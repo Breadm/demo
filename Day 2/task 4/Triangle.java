@@ -26,23 +26,7 @@ public class Triangle extends Shape{
         ed2 = p2.distance(p3);
         ed3 = p1.distance(p3);
         halfPerimeter = perimeter()/2;
-        } else
-            System.out.println("Invalid points");
-    }
-
-    public Triangle() {
-        do {
-            System.out.print("Set valid points \n1 ");
-            p1 = new Point();
-            System.out.print("2 ");
-            p2 = new Point();
-            System.out.print("3  ");
-            p3 = new Point();
-        }  while (p1.collinearPoints(p2,p3));
-        ed1 = p1.distance(p2);
-        ed2 = p2.distance(p3);
-        ed3 = p1.distance(p3);
-        halfPerimeter = perimeter()/2;
+        }
     }
 
     @Override

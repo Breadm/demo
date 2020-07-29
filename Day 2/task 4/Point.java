@@ -19,13 +19,6 @@ public class Point extends Shape {
         this.y = y;
     }
 
-    public Point() {
-        Scanner in = new Scanner(System.in);
-        System.out.println("Point x? y?");
-        this.x = in.nextDouble();
-        this.y = in.nextDouble();
-    }
-
     @Override
     public void print() {
         System.out.format("Point: x: %.2f", x);
@@ -57,15 +50,17 @@ public class Point extends Shape {
         return 0;
     }
 
-    public void quadrant(){
+    public int quadrant(){
         if (x > 0 && y > 0)
-            System.out.println("Point in I quadrant");
+            return 1;
         else if (x < 0 && y > 0)
-            System.out.println("Point in II quadrant");
+            return 2;
         else if (x < 0 && y < 0)
-            System.out.println("Point in III quadrant");
+            return 3;
         else if (x > 0 && y < 0)
-            System.out.println("Point in IV quadrant");
+            return 4;
+        else
+            return 0;
     }
 
     public boolean symmetricPoints(Point point){

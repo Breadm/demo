@@ -6,15 +6,9 @@ public class Polygon extends Shape {
     Point[] pts;
     int n;
 
-    public Polygon() {
-        Scanner in = new Scanner(System.in);
-        System.out.println("N-gon?");
-        n = in.nextInt();
-        pts = new Point[n];
-        for (int i = 0; i < n; i++){
-            System.out.print(i + " ");
-            pts[i] = new Point();
-        }
+    public Polygon(Point[] pts, int n) {
+        this.pts = pts;
+        this.n = n;
     }
 
     @Override

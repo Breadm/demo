@@ -13,13 +13,7 @@ public class Circle extends Shape{
         this.r = r;
     }
 
-    public Circle() {
-        Scanner in = new Scanner(System.in);
-        System.out.println("Circle x,y,r?");
-        this.x = in.nextDouble();
-        this.y = in.nextDouble();
-        this.r = in.nextDouble();
-    }
+
     public double getX() {
         return x;
     }
