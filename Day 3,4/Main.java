@@ -7,13 +7,17 @@ public class Main {
         l.add("test 1");
         l.add("test 2");
         l.add("test 3");
-        l.add("test 0.5",1);
-        l.add("test 1.5",3);
-        l.add("test 4",6);
+        l.add("test 0.5",0);
+        l.add("test 1.5",2);
+        l.add("test 4",5);
         System.out.println(l.size());
-        for (int i = 0; i < l.size()+2; i++) {
-            String s = (String) l.get(i);
-            System.out.println(s);
+        for (int i = -1; i < l.size()+1; i++) {
+            try {
+                String s = (String) l.get(i);
+                System.out.println(s);
+            } catch (IndexException e) {
+                System.out.println(e.getMessage());
+            }
         }
 
     }
@@ -48,11 +52,13 @@ class LList {
     public void add(Object obj, int num){
         if (obj == null)
             return;
-        if (num == size+1){
+        if (num < 0 || num > size)
+            throw new IndexException("Неверный индекс");
+        if (num == size){
             add(obj);
             return;
         }
-        if (num == 1) {
+        if (num == 0) {
             Node newRoot = new Node();
             newRoot.data = obj;
             newRoot.next = root;
@@ -73,8 +79,8 @@ class LList {
     }
 
     public Object get(int num){
-        if (num < 0 || num > size)
-            return null;
+        if (num < 0 || num >= size)
+            throw new IndexException("Неверный индекс");
         Node node = find(num);
         if (node != null)
             return node.data;
@@ -93,10 +99,10 @@ class LList {
     }
 
     private Node find(int num){
-        if (num < 0 || num > size)
+        if (num < 0 || num >= size)
             return null;
         Node current = root;
-        for (int i = 1; i <= size; i++) {
+        for (int i = 0; i < size; i++) {
             if (i == num)
                 return current;
             current = current.next;
