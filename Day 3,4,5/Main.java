@@ -2,19 +2,18 @@ package Practice;
 
 public class Main {
     public static void main(String[] args){
-        LList l = new LList();
+        LList<Number> l = new LList<>();
         System.out.println(l.size());
-        l.add("test 1");
-        l.add("test 2");
-        l.add("test 3");
-        l.add("test 0.5",0);
-        l.add("test 1.5",2);
-        l.add("test 4",5);
+        l.add(1);
+        l.add(2);
+        l.add(3);
+        l.add(0.5,0);
+        l.add(1.5,2);
+        l.add(4,5);
         System.out.println(l.size());
         for (int i = -1; i < l.size()+1; i++) {
             try {
-                String s = (String) l.get(i);
-                System.out.println(s);
+                System.out.println(l.get(i));
             } catch (IndexException e) {
                 System.out.println(e.getMessage());
             }
@@ -23,52 +22,52 @@ public class Main {
     }
 }
 
-class Node {
-    Object data;
+class Node<E> {
+    E data;
     Node next;
 }
 
-class LList {
-    private Node root;
+class LList<E> {
+    private Node<E> root;
     private int size;
 
-    public void add(Object obj){
-        if (obj == null)
+    public void add(E element){
+        if (element == null)
             return;
         Node last = new Node();
         last = findLast(root);
         if (last == null) {
             root = new Node();
-            root.data = obj;
+            root.data = element;
             size = 1;
         } else {
             last.next = new Node();
             last = last.next;
-            last.data = obj;
+            last.data = element;
             size++;
         }
     }
 
-    public void add(Object obj, int num){
-        if (obj == null)
+    public void add(E element, int num){
+        if (element == null)
             return;
         if (num < 0 || num > size)
             throw new IndexException("Неверный индекс");
         if (num == size){
-            add(obj);
+            add(element);
             return;
         }
         if (num == 0) {
-            Node newRoot = new Node();
-            newRoot.data = obj;
+            Node<E> newRoot = new Node<>();
+            newRoot.data = element;
             newRoot.next = root;
             root = newRoot;
             size++;
             return;
         }
-        Node current = find(num-1);
-        Node newNode = new Node();
-        newNode.data = obj;
+        Node<E> current = find(num-1);
+        Node<E> newNode = new Node<>();
+        newNode.data = element;
         newNode.next = current.next;
         current.next = newNode;
         size++;
@@ -78,10 +77,10 @@ class LList {
         return size;
     }
 
-    public Object get(int num){
+    public E get(int num){
         if (num < 0 || num >= size)
             throw new IndexException("Неверный индекс");
-        Node node = find(num);
+        Node<E> node = find(num);
         if (node != null)
             return node.data;
         else
@@ -91,17 +90,17 @@ class LList {
     private Node findLast(Node current){
         if (current == null)
             return null;
-        Node last = current;
+        Node<E> last = current;
         while (last.next != null) {
             last = last.next;
         }
         return last;
     }
 
-    private Node find(int num){
+    private Node<E> find(int num){
         if (num < 0 || num >= size)
             return null;
-        Node current = root;
+        Node<E> current = root;
         for (int i = 0; i < size; i++) {
             if (i == num)
                 return current;
