@@ -2,18 +2,19 @@ package com.company;
 
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class MyClass1 {
     private String name;
     private int number;
-    ArrayList<ArrayList> list;
+    LinkedList<ArrayList> list;
     char[] chars;
 
     public MyClass1() {
 
     }
 
-    public MyClass1(String name, int number, ArrayList<ArrayList> list, char[] chars) {
+    public MyClass1(String name, int number, LinkedList<ArrayList> list, char[] chars) {
         this.name = name;
         this.number = number;
         this.list = list;
